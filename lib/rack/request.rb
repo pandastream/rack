@@ -176,7 +176,7 @@ module Rack
       if @env["rack.input"].nil?
         raise "Missing rack.input"
       elsif @env["rack.request.form_input"].eql? @env["rack.input"]
-        @env["rack.request.form_hash"]
+        @env["rack.request.form_hash"] || {}
       elsif form_data? || parseable_data?
         @env["rack.request.form_input"] = @env["rack.input"]
         unless @env["rack.request.form_hash"] = parse_multipart(env)
